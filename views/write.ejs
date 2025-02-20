@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>수정페이지</h1>
+    <form name="updateData">
+      <div>
+        이름:
+        <input name="resName" value="<%= foodByMo[0].resName %>" />
+      </div>
+      <div>
+        <input name="foodName" value="<%= foodByMo[0].resName %>" />
+      </div>
+      <div>
+        후기:
+        <input name="comment" value="<%= foodByMo[0].comment %>" />
+      </div>
+    </form>
+
+    <button onclick="updateForm('<%= foodByMo[0].id %>')">수정</button>
+  </body>
+  <script>
+    const updateForm = (id) => {
+      const form = document.forms["updateData"];
+
+      const data = {
+        id: id,
+        name: form["userName"].value,
+        comment: form["comment"].value,
+      };
+
+      axios({
+        method: "put",
+        url: `/save/update/${id}`,
+        data: data,
+      }).then((res) => {
+        alert("수정성공");
+      });
+    };
+  </script>
+</html>
