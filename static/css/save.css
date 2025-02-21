@@ -1,0 +1,103 @@
+/* 전역 스타일 */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #333;
+}
+
+/* 폼 스타일 */
+form#uploadForm {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+form#uploadForm input[type="text"],
+form#uploadForm input[type="number"],
+form#uploadForm input[type="date"],
+form#uploadForm input[type="file"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form#uploadForm button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+form#uploadForm button:hover {
+  background-color: #0056b3;
+}
+
+/* 테이블 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f8f9fa;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+table img {
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+}
+
+table button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+table button:hover {
+  background-color: #218838;
+}
+
+table button.delete {
+  background-color: #dc3545;
+}
+
+table button.delete:hover {
+  background-color: #c82333;
+}

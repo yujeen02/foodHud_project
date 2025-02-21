@@ -1,6 +1,6 @@
 const express = require("express");
 const saveController = require("../controller/saveController");
-const multer = require("multer"); // ❗ multer 직접 가져오기
+const multer = require("multer");
 const path = require("path");
 const router = express.Router();
 
@@ -11,19 +11,18 @@ const storage = multer.diskStorage({
   },
   filename(req, file, cb) {
     const ext = require("path").extname(file.originalname);
-    cb(null, Date.now() + ext); // 파일명: 타임스탬프 + 확장자
+    cb(null, Date.now() + ext);
   },
 });
 
-const upload = multer({ storage }); // 업로드 미들웨어 생성
+const upload = multer({ storage });
 
 router.get("/", saveController.getAllData);
 router.get("/write/:id", saveController.moveWrite);
 
-// ✅ 파일 업로드 지원하는 POST 요청
 router.post("/post/test", upload.single("image"), saveController.createTest);
 
-router.put("/update/:id", saveController.dataUpdate);
+router.put("/update/:id", upload.single("image"), saveController.dataUpdate);
 router.delete("/delete/:id", saveController.deleteData);
 
 module.exports = router;

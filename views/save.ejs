@@ -4,12 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/static/css/save.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <form id="uploadForm">
-      <!-- <input type="text" name="ID" placeholder="ID" />
-      <br /> -->
       <input type="file" name="image" required />
       <br />
       <input type="text" name="resName" placeholder="가게명" />
@@ -39,8 +38,7 @@
           <th>가격</th>
           <th>주소</th>
           <th>날짜</th>
-          <th>수정</th>
-          <th>삭제</th>
+          <th colspan="2">관리</th>
         </tr>
       </thead>
       <tbody>
@@ -70,75 +68,5 @@
       </tbody>
     </table>
   </body>
-  <script>
-    const createData = (event) => {
-      event.preventDefault();
-
-      // HTML 요소에서 데이터 가져오기
-      const inputFile = document.querySelector('input[name="image"]').files[0];
-      // const inputId = document.querySelector('input[name="ID"]').value;
-      const inputResName = document.querySelector(
-        'input[name="resName"]'
-      ).value;
-      const inputFoodName = document.querySelector(
-        'input[name="foodName"]'
-      ).value;
-      const inputComment = document.querySelector(
-        'input[name="comment"]'
-      ).value;
-      const inputPrice = document.querySelector('input[name="price"]').value;
-      const inputDate = document.querySelector('input[name="date"]').value;
-      const inputAddress = document.querySelector(
-        'input[name="address"]'
-      ).value;
-
-      // **📌 FormData 객체 생성 (파일 업로드)**
-      const formData = new FormData();
-      formData.append("image", inputFile);
-      formData.append("resName", inputResName);
-      formData.append("foodName", inputFoodName);
-      formData.append("comment", inputComment);
-      formData.append("price", inputPrice);
-      formData.append("address", inputAddress);
-      formData.append("date", inputDate);
-
-      console.log("📤 전송할 데이터:", formData);
-
-      // **📌 Axios를 사용하여 서버로 데이터 전송 (`multipart/form-data`)**
-      axios
-        .post("/save/post/test", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then((res) => {
-          console.log("✅ 등록 성공:", res.data);
-          alert("등록 성공");
-          window.location.reload();
-        })
-        .catch((e) => {
-          console.error("❌ 등록 실패:", e);
-        });
-    };
-
-    // 삭제
-    const deletelist = (id) => {
-      console.log(id);
-      axios({
-        method: "delete",
-        url: `/save/delete/${id}`,
-      })
-        .then((res) => {
-          console.log(res);
-          alert("삭제 성공");
-          window.location.reload();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
-
-    // 수정
-    const updatePage = (id) => {
-      window.location.href = `/save/write/${id}`;
-    };
-  </script>
+  <script src="/static/js/save.js"></script>
 </html>

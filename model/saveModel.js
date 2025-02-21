@@ -17,8 +17,8 @@ const allData = async () => {
 };
 
 // 해당하는 데이터 하나만 가져오기
-const getOne = async (userId) => {
-  const query = `SELECT * FROM foodlist where id = ${userId} `;
+const getOne = async (id) => {
+  const query = `SELECT * FROM foodlist where id = ${id} `;
   const [rows] = await pool.query(query);
   return rows;
 };
@@ -54,11 +54,14 @@ const deleteRow = async (id) => {
 };
 
 //해당아이디를 가진 데이터 수정
-const updateRow = async (data) => {
-  const query =
-    "INSERT INTO foodlist (image, resName, foodName, price, comment, address, createdAt) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+const updateRow = async (data, imagePath) => {
   try {
-    await pool.query(query, [
+    const query = `
+      UPDATE foodlist 
+      SET image = ?, resName = ?, foodName = ?, price = ?, comment = ?, address = ?, createdAt = ?
+      WHERE id = ?
+    `;
+    const values = [
       imagePath,
       data.resName,
       data.foodName,
@@ -66,9 +69,14 @@ const updateRow = async (data) => {
       data.comment,
       data.address,
       data.date,
-    ]);
+      data.id,
+    ];
+
+    console.log("업데이트할 데이터:", values);
+    await pool.query(query, values);
   } catch (e) {
-    console.log("삭제 실패");
+    console.error("❌ 업데이트 실패:", e);
+    throw e;
   }
 };
 

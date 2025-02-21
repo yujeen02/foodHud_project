@@ -4,10 +4,6 @@ const multer = require("multer");
 const path = require("path");
 const port = 3000;
 
-// 📌 업로드된 파일을 웹에서 접근할 수 있도록 정적 경로 설정
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-// Multer 설정 (파일 업로드)
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, "uploads/");
@@ -20,16 +16,22 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+// 저장 라우터 추가
+const saveRoutes = require("./route/saveRoute");
+app.use("/save", saveRoutes);
+
+// main 라우터 추가
+const mainRoutes = require("./route/mainRoute");
+app.use("/", mainRoutes);
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // 정적 파일 제공
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/views", express.static(path.join(__dirname, "views")));
-
-// 라우터 추가
-const saveRoutes = require("./route/saveRoute");
-app.use("/save", saveRoutes);
 
 // View Engine 설정 (EJS 사용)
 app.set("view engine", "ejs");

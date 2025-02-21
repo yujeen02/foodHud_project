@@ -10,37 +10,43 @@
     <h1>수정페이지</h1>
     <form name="updateData">
       <div>
-        이름:
+        음식 사진:
+        <input
+          type="file"
+          name="image"
+          src="<%= foodByMo[0].image %>"
+          required
+        />
+        <img src="<%= foodByMo[0].image %>" width="50" alt="음식 이미지" />
+      </div>
+      <div>
+        가게명:
         <input name="resName" value="<%= foodByMo[0].resName %>" />
       </div>
       <div>
-        <input name="foodName" value="<%= foodByMo[0].resName %>" />
+        음식명:
+        <input name="foodName" value="<%= foodByMo[0].foodName %>" />
       </div>
       <div>
-        후기:
+        음식평:
         <input name="comment" value="<%= foodByMo[0].comment %>" />
       </div>
+      <div>
+        가격:
+        <input name="price" value="<%= foodByMo[0].price %>" />원
+      </div>
+      <div>
+        가게 주소:
+        <input name="address" value="<%= foodByMo[0].address %>" />
+      </div>
+      <div>
+        수정 날짜:
+        <input type="date" name="date" required />
+      </div>
+      <div></div>
     </form>
 
     <button onclick="updateForm('<%= foodByMo[0].id %>')">수정</button>
   </body>
-  <script>
-    const updateForm = (id) => {
-      const form = document.forms["updateData"];
-
-      const data = {
-        id: id,
-        name: form["userName"].value,
-        comment: form["comment"].value,
-      };
-
-      axios({
-        method: "put",
-        url: `/save/update/${id}`,
-        data: data,
-      }).then((res) => {
-        alert("수정성공");
-      });
-    };
-  </script>
+  <script src="/static/js/write.js"></script>
 </html>
