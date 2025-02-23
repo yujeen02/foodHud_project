@@ -1,108 +1,150 @@
-/* 기본 스타일 초기화 */
-* {
+/* ✨ 전체 페이지 기본 설정 */
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Roboto", Arial, sans-serif;
-  background-color: #f8f9fa; /* 밝은 배경 */
-  color: #333;
+  background-color: #f8f8f8;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-  padding: 20px;
+  min-height: 100vh; /* 전체 높이를 화면 가득 채우기 */
 }
 
-/* 헤더 스타일 */
+/* 🏠 헤더 스타일 */
 #head {
-  width: 100%;
-  background-color: black; /* 어두운 헤더 */
-  color: white;
-  padding: 20px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-color: white;
+  border-bottom: 2px solid #ddd;
   position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: 1000;
 }
 
-#bookMark {
-  position: absolute;
-  left: 20px;
-}
-
 #bookMark img {
-  width: 40px;
-  height: 40px;
+  width: 30px;
   cursor: pointer;
 }
 
 #headerName {
   font-size: 24px;
   font-weight: bold;
-  color: white;
+  color: #333;
+  margin-left: 15px;
 }
 
-/* 음식 이미지 컨테이너 */
+/* 🍽 음식 목록 컨테이너 */
 .food-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4열 레이아웃 */
-  gap: 20px;
-  padding: 100px 20px 40px; /* 헤더 높이 고려한 패딩 */
-  width: 90%;
-  max-width: 1200px;
+  grid-template-columns: repeat(4, 1fr); /* 4개씩 정렬 */
+  gap: 20px; /* 간격 */
+  justify-content: center;
+  align-items: center;
+  min-height: 400px; /* 최소 높이 설정 */
+  padding: 50px 20px 20px; /* 헤더 높이 고려 */
+  flex-grow: 1;
 }
 
-.food-container div {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s;
-}
-
-.food-container div:hover {
-  transform: translateY(-5px);
-}
-
-.food-container img {
+/* 📌 개별 음식 박스 */
+.foodBox {
   width: 100%;
-  height: 200px;
+  max-width: 350px; /* 최대 400px */
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+  text-align: left;
+}
+
+/* 🖼 모든 이미지 동일 크기 */
+.foodBox img {
+  width: 100%;
+  height: 250px;
   object-fit: cover;
-  border-bottom: 1px solid #ddd;
+  border-radius: 10px;
 }
 
-/* 반응형 디자인 */
-@media (max-width: 1024px) {
+/* 북마크 버튼 */
+.bookmark-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.bookmark-btn img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 🍽 음식 정보 스타일 */
+.resName {
+  padding-top: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 🎖 '서울 2025 선정' 태그 */
+.foodBox .selected-tag {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* ⚫ 푸터 스타일 (화면 하단에 고정 & 꽉 차도록 설정) */
+.bottom {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-top: auto;
+  width: 100%;
+}
+
+.footer-logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.footer-info p {
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.footer-copyright {
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+/* 📱 반응형 디자인 */
+@media (max-width: 1200px) {
   .food-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 화면 크기가 줄어들면 3개씩 */
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .food-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  #headerName {
-    font-size: 20px;
+    grid-template-columns: repeat(2, 1fr); /* 더 작은 화면에서는 2개씩 */
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .food-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  #bookMark img {
-    width: 35px;
-    height: 35px;
+    grid-template-columns: repeat(1, 1fr); /* 모바일에서는 1개씩 */
   }
 }

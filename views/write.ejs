@@ -1,74 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>음식 정보 수정</title>
     <link rel="stylesheet" href="/static/css/write.css" />
-
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <h1>수정페이지</h1>
+    <h1>수정 페이지</h1>
     <form name="updateData">
-      <div>
-        메인 사진:
-        <input
-          type="file"
-          name="image"
+      <!-- 🖼 메인 사진 업로드 -->
+      <div class="image-upload">
+        <label for="imageUpload">메인 사진:</label>
+        <input type="file" id="imageUpload" name="image" />
+        <!-- <label for="imageUpload" class="file-label">파일 선택</label> -->
+        <img
           src="<%= foodByMo[0].image %>"
-          required
+          class="preview-image"
+          alt="메인 이미지"
         />
-        <img src="<%= foodByMo[0].image %>" width="50" alt="음식 이미지" />
       </div>
+
+      <!-- 🖼 서브 사진 업로드 (2줄 정렬) -->
+      <div class="sub-image-row">
+        <div class="image-upload">
+          <label for="subImage1Upload">서브 사진1:</label>
+          <input type="file" id="subImage1Upload" name="subImage1" />
+          <!-- <label for="subImage1Upload" class="file-label">파일 선택</label> -->
+          <img
+            src="<%= foodByMo[0].subImage1 %>"
+            class="preview-image"
+            alt="서브 이미지1"
+          />
+        </div>
+      </div>
+
+      <div class="sub-image-row">
+        <div class="image-upload">
+          <label for="subImage2Upload">서브 사진2:</label>
+          <input type="file" id="subImage2Upload" name="subImage2" />
+          <!-- <label for="subImage2Upload" class="file-label">파일 선택</label> -->
+          <img
+            src="<%= foodByMo[0].subImage2 %>"
+            class="preview-image"
+            alt="서브 이미지2"
+          />
+        </div>
+      </div>
+
+      <!-- 가게 정보 입력 필드 -->
       <div>
-        서브 사진1:
+        <label for="resName">가게명:</label>
+        <input id="resName" name="resName" value="<%= foodByMo[0].resName %>" />
+      </div>
+
+      <div>
+        <label for="foodName">음식명:</label>
         <input
-          type="file"
-          name="subImage1"
-          src="<%= foodByMo[0].subImage1 %>"
-          required
+          id="foodName"
+          name="foodName"
+          value="<%= foodByMo[0].foodName %>"
         />
-        <img src="<%= foodByMo[0].subImage1 %>" width="50" alt="음식 이미지" />
       </div>
+
       <div>
-        서브 사진2:
-        <input
-          type="file"
-          name="subImage2"
-          src="<%= foodByMo[0].subImage2 %>"
-          required
-        />
-        <img src="<%= foodByMo[0].subImage2 %>" width="50" alt="음식 이미지" />
+        <label for="comment">음식평:</label>
+        <input id="comment" name="comment" value="<%= foodByMo[0].comment %>" />
       </div>
+
       <div>
-        가게명:
-        <input name="resName" value="<%= foodByMo[0].resName %>" />
+        <label for="price">가격:</label>
+        <input id="price" name="price" value="<%= foodByMo[0].price %>" />
       </div>
+
       <div>
-        음식명:
-        <input name="foodName" value="<%= foodByMo[0].foodName %>" />
+        <label for="address">가게 주소:</label>
+        <input id="address" name="address" value="<%= foodByMo[0].address %>" />
       </div>
+
       <div>
-        음식평:
-        <input name="comment" value="<%= foodByMo[0].comment %>" />
+        <label for="rating">평점:</label>
+        <input id="rating" name="rating" value="<%= foodByMo[0].rating %>" />
       </div>
-      <div>
-        가격:
-        <input name="price" value="<%= foodByMo[0].price %>" />원
-      </div>
-      <div>
-        가게 주소:
-        <input name="address" value="<%= foodByMo[0].address %>" />
-      </div>
-      <div>
-        수정 날짜:
-        <input type="date" name="date" required />
-      </div>
-      <div></div>
     </form>
 
     <button onclick="updateForm('<%= foodByMo[0].id %>')">수정</button>
   </body>
+
   <script src="/static/js/write.js"></script>
 </html>

@@ -31,8 +31,7 @@ form[name="updateData"] {
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-  width: 90%;
-  max-width: 600px;
+  width: 600px;
   margin-bottom: 30px;
   border: 1px solid #ddd;
   display: flex;
@@ -40,41 +39,62 @@ form[name="updateData"] {
   gap: 15px;
 }
 
-/* 입력 필드 스타일 */
+/* 입력 필드 스타일 (라벨과 input을 같은 줄에 정렬) */
 form[name="updateData"] div {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between; /* 좌우 정렬 */
   font-size: 16px;
   color: #555;
+  width: 100%;
+}
+
+form[name="updateData"] div label {
+  width: 30%;
+  text-align: left; /* 왼쪽 정렬 */
+  font-weight: bold;
 }
 
 form[name="updateData"] input {
-  width: 100%;
-  padding: 12px;
-  margin-top: 5px;
+  width: 65%;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 14px;
-  text-align: center;
   background: #f9f9f9;
   transition: all 0.3s ease;
 }
 
-form[name="updateData"] input:focus {
-  border-color: #aaa;
-  box-shadow: 0 0 8px rgba(170, 170, 170, 0.2);
-  outline: none;
-}
-
 /* 이미지 미리보기 스타일 */
-form[name="updateData"] img {
+form[name="updateData"] div img {
   width: 100px;
   height: 100px;
   border-radius: 6px;
-  object-fit: cover;
-  margin-top: 10px;
+  object-fit: fill;
+  margin-left: 10px;
   border: 1px solid #ddd;
+}
+
+/* 파일 입력 필드 숨기고 라벨로 대체 */
+/* form[name="updateData"] input[type="file"] {
+  display: none;
+} */
+
+form[name="updateData"] .file-label {
+  background: linear-gradient(135deg, #f2f2f2, #e0e0e0);
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+form[name="updateData"] .file-label:hover {
+  background: linear-gradient(135deg, #e0e0e0, #d4d4d4);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(170, 170, 170, 0.3);
 }
 
 /* 수정 버튼 */

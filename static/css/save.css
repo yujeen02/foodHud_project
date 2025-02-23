@@ -74,15 +74,13 @@ body {
 
 /* 테이블 스타일 */
 .main-wrap {
-  width: 90%;
-  max-width: 1000px;
+  width: 1300px;
   margin-top: 20px;
   overflow-x: auto;
 }
 
 table {
-  width: 100%;
-  max-width: 1000px;
+  width: 1300px;
   border-collapse: collapse;
   background: #ffffff;
   border-radius: 12px;

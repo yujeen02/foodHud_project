@@ -4,6 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const port = 3000;
 
+// 파일 업로드 설정
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, "uploads/");
@@ -16,26 +17,24 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// 저장 라우터 추가
+// 다른 라우트 추가
 const saveRoutes = require("./route/saveRoute");
 app.use("/save", saveRoutes);
 
-// main 라우터 추가
 const mainRoutes = require("./route/mainRoute");
 app.use("/", mainRoutes);
 
 const heartRoutes = require("./route/heartRoute");
 app.use("/", heartRoutes);
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 // 정적 파일 제공
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/views", express.static(path.join(__dirname, "views")));
 app.use("/images", express.static(path.join(__dirname, "images")));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // View Engine 설정 (EJS 사용)
 app.set("view engine", "ejs");

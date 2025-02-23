@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <!-- 헤더 -->
+    <!-- 🏠 헤더 -->
     <div id="head">
       <div id="bookMark">
         <a href="/bookmark">
@@ -18,34 +18,46 @@
       <div id="headerName">CHOI'S FoodHub</div>
     </div>
 
-    <!-- 음식 목록 -->
+    <!-- 🍽 음식 목록 -->
     <div class="food-container">
       <% food.forEach((item) => { %>
       <div class="foodBox">
+        <!-- 상세 페이지 이동 -->
         <a href="/detail/<%= item.id %>">
           <img src="<%= item.image %>" alt="<%= item.foodName %>" />
         </a>
-        <div>
-          <!-- ⭐ 북마크 버튼 -->
-          <div class="bookmark-btn" onclick="toggleBookmark(`<%= item.id %>`)">
-            <img src="/images/bookmark.png" alt="북마크 아이콘" />
-          </div>
+        <div class="rating">⭐ <%= item.rating %> / 5</div>
+
+        <!-- 🍽 음식 정보 -->
+        <div class="resName"><%= item.resName %></div>
+
+        <!-- 북마크 버튼 -->
+        <div class="bookmark-btn" onclick="toggleBookmark(`<%= item.id %>`)">
+          <img src="/images/bookmark.png" alt="북마크 아이콘" />
         </div>
       </div>
       <% }); %>
     </div>
 
-    <script>
-      function toggleBookmark(foodId) {
-        axios
-          .post("/bookmark/toggle", { foodListId: foodId })
-          .then((res) => {
-            alert(res.data.message);
-          })
-          .catch((error) => {
-            console.error("북마크 오류:", error);
-          });
-      }
-    </script>
+    <!-- ⚫ 푸터 -->
+    <div class="bottom">
+      <div class="footer-logo">
+        <div class="cinemaNameBottom">CHOI'S FoodHub</div>
+      </div>
+      <div class="footer-info">
+        <p>서울특별시 송파구 올림픽로 1234 CHOI빌딩 18F</p>
+        <p>
+          대표 이메일: dreamcometrue@choifoodhub.co.kr | 고객센터: 1544-6848
+          (유료) | 사업자등록번호: 010-00-00000
+        </p>
+        <p>
+          대표이사: 최유진 | 개인정보 보호 책임자: 김동동 | 호스팅 제공자: CHOI
+          이노베이트
+        </p>
+      </div>
+      <p class="footer-copyright">
+        Copyright © CHOI FoodHub All Rights Reserved.
+      </p>
+    </div>
   </body>
 </html>

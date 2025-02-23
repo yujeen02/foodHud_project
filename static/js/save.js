@@ -10,7 +10,7 @@ const createData = (event) => {
   const inputPrice = document.querySelector('input[name="price"]').value;
   const inputDate = document.querySelector('input[name="date"]').value;
   const inputAddress = document.querySelector('input[name="address"]').value;
-
+  const inputRating = document.querySelector('input[name="rating"]').value; // ⭐ 평점 추가
   // FormData 객체 생성
   const formData = new FormData();
 
@@ -23,6 +23,7 @@ const createData = (event) => {
   formData.append("price", inputPrice);
   formData.append("address", inputAddress);
   formData.append("date", inputDate);
+  formData.append("rating", inputRating);
 
   //  Axios를 사용 -> 서버로 데이터 전송
   axios({

@@ -26,8 +26,8 @@ const getOne = async (id) => {
 //등록하기
 const postData = async (data) => {
   const query = `
-      INSERT INTO foodlist (image, subImage1, subImage2, resName, foodName, price, comment, address, createdAt)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO foodlist (image, subImage1, subImage2, resName, foodName, price, comment, address, rating)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
   const values = [
     data.image,
@@ -38,7 +38,7 @@ const postData = async (data) => {
     data.price,
     data.comment,
     data.address,
-    data.date,
+    data.rating,
   ];
 
   const [result] = await pool.query(query, values);
@@ -60,7 +60,7 @@ const updateRow = async (data) => {
   try {
     const query = `
       UPDATE foodlist 
-      SET image = ?, subImage1 = ?, subImage2 = ?, resName = ?, foodName = ?, price = ?, comment = ?, address = ?, createdAt = ?
+      SET image = ?, subImage1 = ?, subImage2 = ?, resName = ?, foodName = ?, price = ?, comment = ?, address = ?, rating = ?
       WHERE id = ?
     `;
     const values = [
@@ -72,7 +72,7 @@ const updateRow = async (data) => {
       data.price,
       data.comment,
       data.address,
-      data.date,
+      data.rating,
       data.id,
     ];
 
