@@ -4,13 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/static/css/write.css" />
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <h1>수정페이지</h1>
     <form name="updateData">
       <div>
-        음식 사진:
+        메인 사진:
         <input
           type="file"
           name="image"
@@ -18,6 +20,26 @@
           required
         />
         <img src="<%= foodByMo[0].image %>" width="50" alt="음식 이미지" />
+      </div>
+      <div>
+        서브 사진1:
+        <input
+          type="file"
+          name="subImage1"
+          src="<%= foodByMo[0].subImage1 %>"
+          required
+        />
+        <img src="<%= foodByMo[0].subImage1 %>" width="50" alt="음식 이미지" />
+      </div>
+      <div>
+        서브 사진2:
+        <input
+          type="file"
+          name="subImage2"
+          src="<%= foodByMo[0].subImage2 %>"
+          required
+        />
+        <img src="<%= foodByMo[0].subImage2 %>" width="50" alt="음식 이미지" />
       </div>
       <div>
         가게명:

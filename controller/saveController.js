@@ -8,9 +8,13 @@ const getAllData = async (req, res) => {
 
 //등록
 const createTest = async (req, res) => {
-  const filename = req.file.filename;
-  const imagePath = `/uploads/${filename}`;
-  const createData = await savemodel.postData(req.body, imagePath);
+  const images = {
+    image: `/uploads/${req.files["image"][0].filename}`,
+    subImage1: `/uploads/${req.files["subImage1"][0].filename}`,
+    subImage2: `/uploads/${req.files["subImage2"][0].filename}`,
+  };
+  console.log(images);
+  const createData = await savemodel.postData({ ...req.body, ...images });
   res.status(200).json({ message: "등록 성공", data: createData });
 };
 
@@ -26,27 +30,52 @@ const moveWrite = async (req, res) => {
   res.render("write", { foodByMo });
 };
 
+// 수정
 const dataUpdate = async (req, res) => {
   try {
     console.log("수정 요청 받은 데이터:", req.body);
-    console.log("업로드된 파일:", req.file ? req.file.filename : "파일 없음");
+    console.log("업로드된 파일들:", req.files);
 
     // 기존 데이터 가져오기
     const existingData = await savemodel.getOne(req.params.id);
 
-    // 기존 이미지 경로 유지
-    const filename = req.file
-      ? req.file.filename
-      : existingData[0].image.replace("/uploads/", "");
-    const imagePath = `/uploads/${filename}`;
+    if (!existingData.length) {
+      return res
+        .status(404)
+        .json({ error: "해당 ID의 데이터를 찾을 수 없습니다." });
+    }
 
-    console.log("저장될 이미지 경로:", imagePath);
+    // 이미지 경로 설정
+    const imagePath = req.files["image"]
+      ? `/uploads/${req.files["image"][0].filename}`
+      : existingData[0].image;
 
-    await savemodel.updateRow({ ...req.body, id: req.params.id }, imagePath);
+    const subImage1Path = req.files["subImage1"]
+      ? `/uploads/${req.files["subImage1"][0].filename}`
+      : existingData[0].subImage1;
+
+    const subImage2Path = req.files["subImage2"]
+      ? `/uploads/${req.files["subImage2"][0].filename}`
+      : existingData[0].subImage2;
+
+    console.log("저장될 이미지 경로:", {
+      imagePath,
+      subImage1Path,
+      subImage2Path,
+    });
+
+    // 데이터 업데이트 실행
+    await savemodel.updateRow({
+      ...req.body,
+      id: req.params.id,
+      image: imagePath,
+      subImage1: subImage1Path,
+      subImage2: subImage2Path,
+    });
 
     res.status(200).json({ message: "수정 성공" });
   } catch (error) {
-    console.error("❌ 수정 실패:", error);
+    console.error("수정 실패:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

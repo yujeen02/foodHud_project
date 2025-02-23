@@ -1,0 +1,126 @@
+/* Reset 기본 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: #fdfdfd; /* 화이트 배경 */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+/* 수정 페이지 제목 */
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* 입력 폼 컨테이너 */
+form[name="updateData"] {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  width: 90%;
+  max-width: 600px;
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 입력 필드 스타일 */
+form[name="updateData"] div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  color: #555;
+}
+
+form[name="updateData"] input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  background: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+form[name="updateData"] input:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 8px rgba(170, 170, 170, 0.2);
+  outline: none;
+}
+
+/* 이미지 미리보기 스타일 */
+form[name="updateData"] img {
+  width: 100px;
+  height: 100px;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+}
+
+/* 수정 버튼 */
+button {
+  background: linear-gradient(135deg, #e6e6e6, #dcdcdc);
+  color: #333;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: 200px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #dcdcdc, #cfcfcf);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(170, 170, 170, 0.3);
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  form[name="updateData"] {
+    padding: 20px;
+  }
+
+  button {
+    font-size: 14px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  form[name="updateData"] {
+    padding: 15px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 10px;
+  }
+}

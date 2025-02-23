@@ -1,9 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>가게 상세 정보</title>
+    <link rel="stylesheet" href="/static/css/detail.css" />
   </head>
-  <body></body>
+  <body>
+    <h2>해당하는 가게</h2>
+    <div class="store-container">
+      <% food.forEach((x) => { %>
+      <div class="store-card">
+        <img src="<%= x.image %>" alt="<%= x.foodName %> 이미지" />
+        <ul class="store-info">
+          <li><strong>가게명:</strong> <%= x.resName %></li>
+          <li><strong>음식명:</strong> <%= x.foodName %></li>
+          <li><strong>가격:</strong> <%= x.price %>원</li>
+          <li><strong>후기:</strong> <%= x.comment %></li>
+          <li><strong>가게 주소:</strong> <%= x.address %></li>
+          <li><strong>작성일:</strong> <%= x.createdAt %></li>
+        </ul>
+      </div>
+      <% }) %>
+    </div>
+  </body>
 </html>

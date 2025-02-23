@@ -24,13 +24,15 @@ const getOne = async (id) => {
 };
 
 //등록하기
-const postData = async (data, imagePath) => {
+const postData = async (data) => {
   const query = `
-      INSERT INTO foodlist (image, resName, foodName, price, comment, address, createdAt)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO foodlist (image, subImage1, subImage2, resName, foodName, price, comment, address, createdAt)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
   const values = [
-    imagePath,
+    data.image,
+    data.subImage1,
+    data.subImage2,
     data.resName,
     data.foodName,
     data.price,
@@ -54,15 +56,17 @@ const deleteRow = async (id) => {
 };
 
 //해당아이디를 가진 데이터 수정
-const updateRow = async (data, imagePath) => {
+const updateRow = async (data) => {
   try {
     const query = `
       UPDATE foodlist 
-      SET image = ?, resName = ?, foodName = ?, price = ?, comment = ?, address = ?, createdAt = ?
+      SET image = ?, subImage1 = ?, subImage2 = ?, resName = ?, foodName = ?, price = ?, comment = ?, address = ?, createdAt = ?
       WHERE id = ?
     `;
     const values = [
-      imagePath,
+      data.image,
+      data.subImage1,
+      data.subImage2,
       data.resName,
       data.foodName,
       data.price,

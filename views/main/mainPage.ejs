@@ -1,17 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>CHOI'S FoodHub</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <% for (let i = 0; i < food.length; i++) { %>
-    <div>
-      <a href="/detail/<%= food[i].id %>">
-        <img src="<%= food[i].image %>" alt="음식 이미지" />
-      </a>
+    <!-- 헤더 -->
+    <div id="head">
+      <div id="bookMark">
+        <a href="/bookmark">
+          <img src="/images/bookmark.png" alt="북마크 아이콘" />
+        </a>
+      </div>
+      <div id="headerName">CHOI'S FoodHub</div>
     </div>
-    <% } %>
+
+    <!-- 음식 목록 -->
+    <div class="food-container">
+      <% food.forEach((item) => { %>
+      <div class="foodBox">
+        <a href="/detail/<%= item.id %>">
+          <img src="<%= item.image %>" alt="<%= item.foodName %>" />
+        </a>
+        <div>
+          <!-- ⭐ 북마크 버튼 -->
+          <div class="bookmark-btn" onclick="toggleBookmark(`<%= item.id %>`)">
+            <img src="/images/bookmark.png" alt="북마크 아이콘" />
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+
+    <script>
+      function toggleBookmark(foodId) {
+        axios
+          .post("/bookmark/toggle", { foodListId: foodId })
+          .then((res) => {
+            alert(res.data.message);
+          })
+          .catch((error) => {
+            console.error("북마크 오류:", error);
+          });
+      }
+    </script>
   </body>
 </html>

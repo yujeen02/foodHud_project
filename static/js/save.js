@@ -3,6 +3,7 @@ const createData = (event) => {
 
   // 데이터 가져오기
   const inputFile = document.querySelector('input[name="image"]').files[0];
+  const inputSubFiles = document.querySelector('input[name="subImage"]').files;
   const inputResName = document.querySelector('input[name="resName"]').value;
   const inputFoodName = document.querySelector('input[name="foodName"]').value;
   const inputComment = document.querySelector('input[name="comment"]').value;
@@ -14,6 +15,8 @@ const createData = (event) => {
   const formData = new FormData();
 
   formData.append("image", inputFile);
+  formData.append("subImage1", inputSubFiles[0]);
+  formData.append("subImage2", inputSubFiles[1]);
   formData.append("resName", inputResName);
   formData.append("foodName", inputFoodName);
   formData.append("comment", inputComment);
@@ -39,7 +42,7 @@ const createData = (event) => {
 };
 
 // 삭제
-const deletelist = (id) => {
+const deleteList = (id) => {
   console.log(id);
   axios({
     method: "delete",

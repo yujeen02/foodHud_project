@@ -1,0 +1,108 @@
+/* 기본 스타일 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: #f8f9fa; /* 밝은 배경 */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+/* 헤더 스타일 */
+#head {
+  width: 100%;
+  background-color: black; /* 어두운 헤더 */
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+#bookMark {
+  position: absolute;
+  left: 20px;
+}
+
+#bookMark img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#headerName {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+/* 음식 이미지 컨테이너 */
+.food-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4열 레이아웃 */
+  gap: 20px;
+  padding: 100px 20px 40px; /* 헤더 높이 고려한 패딩 */
+  width: 90%;
+  max-width: 1200px;
+}
+
+.food-container div {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.food-container div:hover {
+  transform: translateY(-5px);
+}
+
+.food-container img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .food-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .food-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #headerName {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .food-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  #bookMark img {
+    width: 35px;
+    height: 35px;
+  }
+}

@@ -24,6 +24,9 @@ app.use("/save", saveRoutes);
 const mainRoutes = require("./route/mainRoute");
 app.use("/", mainRoutes);
 
+const heartRoutes = require("./route/heartRoute");
+app.use("/", heartRoutes);
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(express.json());
@@ -32,6 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 // 정적 파일 제공
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/views", express.static(path.join(__dirname, "views")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 // View Engine 설정 (EJS 사용)
 app.set("view engine", "ejs");
